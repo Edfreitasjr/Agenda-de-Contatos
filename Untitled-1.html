@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Contatos</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        input {
+            padding: 10px;
+            flex: 1;
+        }
+
+        button {
+            padding: 10px 16px;
+            cursor: pointer;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #0b5ed7;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Agenda de Contatos</h1>
+
+        <form id="form-contato">
+            <input 
+                type="text" 
+                id="nome-contato" 
+                placeholder="Nome do contato" 
+                required
+            >
+
+            <input 
+                type="tel" 
+                id="telefone-contato" 
+                placeholder="Telefone" 
+                required
+            >
+
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                </tr>
+            </thead>
+
+            <tbody id="corpo-tabela">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const form = document.getElementById('form-contato');
+        const corpoTabela = document.getElementById('corpo-tabela');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome-contato').value;
+            const telefone = document.getElementById('telefone-contato').value;
+
+            const novaLinha = `
+                <tr>
+                    <td>${nome}</td>
+                    <td>${telefone}</td>
+                </tr>
+            `;
+
+            corpoTabela.innerHTML += novaLinha;
+
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>
